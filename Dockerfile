@@ -1,7 +1,7 @@
-FROM nginx:alpine
-
-COPY index.html /usr/share/nginx/html/index.html
-
+FROM ubuntu
+RUN apt update
+RUN apt install -y apache2 git
+RUN rm -R /var/www/html
+RUN git clone https://github.com/SonaElysia/CapstoneCloud-225410091.git /var/www/html
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["apache2ctl", "-D", "FOREGROUND"]
